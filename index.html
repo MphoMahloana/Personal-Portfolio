@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mpho Mahloana | IT Engineer</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div class="background">
+    <div class="particles"></div>
+  </div>
+
+  <header class="header">
+    <nav class="top-nav">
+      <div class="nav-logo">
+        <svg viewBox="0 0 105 100" fill="currentColor" class="logo-svg" aria-label="Mpho Mahloana's initials">
+          <path d="M10 85 V15 L30 45 L50 15 V85 H35 V40 L30 47 L25 40 V85 H10 Z M55 85 V15 L75 45 L95 15 V85 H80 V40 L75 47 L70 40 V85 H55 Z"></path>
+        </svg>
+      </div>
+      <div class="desktop-nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      <button class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-menu">
+        <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </nav>
+  </header>
+  
+  <div class="mobile-nav-menu" id="mobile-nav-menu" role="dialog" aria-modal="true">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#experience" class="nav-link">Experience</a>
+    <a href="#education" class="nav-link">Education</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </div>
+
+
+  <main>
+    <section class="card hero" id="home">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iIzFhMWExYyIvPjxwYXRoIGZpbGw9IiNmNWI5MjIiIGQ9Ik01MCAwIEE1MCA1MCAwIDAgMSAxMDAgNTAgTDUwIDUwIFoiLz48cGF0aCBmaWxsPSIjZmZjNDAwIiBkPSJNNTAgMCBBMTcgMTcgMCAwIDAgNTAgMzQgTDUwIDAgWiIvPjxwYXRoIGZpbGw9IiMyYzJjMmYiIGQ9Ik01MCAwIEE1MCA1MCAwIDAgMCAwIDUwIEw1MCA1MCBaIiвр+PC9zdmc+" class="profile--img" alt="Mpho Mahloana's profile avatar">
+      <h1>Mpho Mahloana</h1>
+      <p class="tagline">
+        IT Engineer <span class="separator">|</span> Aspiring Cloud Engineer
+      </p>
+      <div class="hero-actions">
+        <!-- 
+          HOW TO ADD YOUR CV:
+          1. Rename your CV file to "CV.pdf".
+          2. Place the "CV.pdf" file in the same folder as this index.html file.
+          Alternatively, you can change the href="CV.pdf" below to a direct URL to your CV.
+        -->
+        <a href="CV.pdf" class="cta-button" download>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Download CV</span>
+        </a>
+        <div class="social-links">
+          <!-- 
+            HOW TO UPDATE SOCIAL LINKS:
+            1. Replace the "#" in the href attributes with your actual profile URLs for GitHub and LinkedIn.
+            2. For the email link, replace "your-email@example.com" with your actual email address.
+          -->
+          <a href="#" aria-label="GitHub Profile" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a href="mailto:your-email@example.com" aria-label="Send Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          </a>
+          <a href="tel:0732520243" aria-label="Call me">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section card" id="about">
+      <h2>About Me</h2>
+      <p>As a Digital Associate, my passion for cloud technologies drives my journey to become a Cloud Engineer. I am focused on building robust and scalable solutions, thriving on complex problem-solving and continuous learning in the ever-evolving tech landscape.</p>
+    </section>
+
+    <section class="content-section card" id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+                        <span>Azure</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.667 22c-1.663 0-2.88-1.488-2.58-3.09l.49-2.62c.06-.32.02-.65-.11-.94l-1.3-3.12a2.533 2.533 0 0 1 .6-3.26l2.33-1.89c.27-.22.45-.55.5-.9l.33-2.26a2.533 2.533 0 0 1 2.9-2.22l3.2.53c.34.06.68.03.98-.08l2.91-1.09A2.533 2.533 0 0 1 22 4.667v10.666a2.533 2.533 0 0 1-2.533 2.534l-2.8.47c-.33.05-.65.19-.9.4l-2.13 1.8c-1.05.88-2.48 1.463-3.934 1.463zm-6.08-3.91l.66-3.53c.06-.32.02-.65-.11-.94l-1.3-3.12a.533.533 0 0 1 .13-.68l2.33-1.89c.27-.22.45-.55.5-.9l.33-2.26a.533.533 0 0 1 .62-.47l3.2.53c.34.06.68.03.98-.08l2.91-1.09a.533.533 0 0 1 .6.73l-1.09 2.9c-.11.3-.14.64-.08.98l.53 3.2c.07.42-.07.85-.35 1.15l-1.8 2.13c-.25.29-.39.66-.4.1.06l-.47 2.8a.533.533 0 0 1-.66.47l-3.53-.66a1.18 1.18 0 0 0-.94.11l-3.12 1.3a.533.533 0 0 1-.68-.13z"></path></svg>
+                        <span>Python</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>Networking</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        <span>Business Skills</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                        <span>End User Computing</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+                        <span>Cloud Computing</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <span>Computer Literacy</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 0 2l-.15.08a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1 0-2l.15-.08a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <span>Technical Support</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8"/><path d="M10 22H4a2 2 0 0 1-2-2V6"/><path d="M22 12v8a2 2 0 0 1-2 2h-6a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2zM16 16h.01"/></svg>
+                        <span>Operating System</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        <span>JavaScript</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                        <span>CSS</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        <span>C#</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        <span>Microsoft Engineer</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="20" height="6" rx="2" ry="2"></rect><path d="M6 12h.01"/><path d="M10 12h.01"/><path d="M14 12h.01"/></svg>
+                        <span>Cisco Networking</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5.5 5.5 0 0 0-5.5 5.5A5.5 5.5 0 0 0 12 13a5.5 5.5 0 0 0 5.5-5.5A5.5 5.5 0 0 0 12 2z"/><path d="M12 13v1"/><path d="M10 14v1.5"/><path d="M14 14v1.5"/><path d="M12 15.5V17"/><path d="M12 17h.5a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v0a1.5 1.5 0 0 1 1.5-1.5h.5z"/><path d="M15 15.5h1.5a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M9 15.5H7.5A1.5 1.5 0 0 0 6 17v0a1.5 1.5 0 0 0 1.5 1.5H8"/></svg>
+                        <span>Artificial Intelligence</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                        <span>SQL</span>
+                    </span>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>Soft Skills</h3>
+                <div class="skills-grid">
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+                        <span>Problem-Solving</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        <span>Communication</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <span>Teamwork</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M21 21v-5h-5"/></svg>
+                        <span>Adaptability</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Time Management</span>
+                    </span>
+                    <span class="skill-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5.5 5.5 0 0 0-5.5 5.5A5.5 5.5 0 0 0 12 13a5.5 5.5 0 0 0 5.5-5.5A5.5 5.5 0 0 0 12 2z"/><path d="M12 13v1"/><path d="M10 14v1.5"/><path d="M14 14v1.5"/><path d="M12 15.5V17"/><path d="M12 17h.5a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v0a1.5 1.5 0 0 1 1.5-1.5h.5z"/><path d="M15 15.5h1.5a1.5 1.5 0 0 1 1.5 1.5v0a1.5 1.5 0 0 1-1.5 1.5H16"/><path d="M9 15.5H7.5A1.5 1.5 0 0 0 6 17v0a1.5 1.5 0 0 0 1.5 1.5H8"/></svg>
+                        <span>Critical Thinking</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section card" id="experience">
+        <h2>Experience</h2>
+        <ul class="timeline-list">
+            <li class="experience-item">
+                <h3>Digital Associate</h3>
+                <p class="experience-details">Tech Training Program | July 2025 - Present</p>
+                <ul class="details-list">
+                    <li>Assisted in deploying and managing cloud infrastructure on Microsoft Azure.</li>
+                    <li>Developed automation scripts using Python to streamline operational tasks, improving data processing efficiency by 15%.</li>
+                    <li>Provided technical support for network and system-related issues, contributing to a 99.9% uptime.</li>
+                    <li>Contributed to the design and implementation of scalable cloud solutions capable of handling a 20% increase in user traffic.</li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Add more experience items here if needed -->
+    </section>
+
+    <section class="content-section card" id="education">
+      <h2>Education & Qualifications</h2>
+      <!-- 
+        HOW TO UPDATE CERTIFICATION LINKS:
+        For each completed certification, replace the href="#" with the actual URL to your certificate.
+        For example: href="https://www.credly.com/your-badge-url"
+      -->
+      <ul class="timeline-list education-list">
+        <li class="education-item">
+          <h3>Information Technology Engineering</h3>
+          <p class="education-details">Think360 iStudent Academy | 2023 - 2024</p>
+          <p>Focused on software development, networking, and systems administration. Completed several projects involving C#, SQL, and web technologies.</p>
+        </li>
+        <li class="education-item">
+          <h3>Higher Certification</h3>
+          <p class="education-details">Riverside High School | 2020</p>
+        </li>
+        <li class="education-item has-link">
+          <h3>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link" aria-label="View Microsoft Certified: Azure Fundamentals (AZ-900) certificate">
+              <span>Microsoft Certified: Azure Fundamentals (AZ-900)</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </h3>
+          <p class="education-details">Issued: 2024</p>
+        </li>
+        <li class="education-item has-link">
+          <h3>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link" aria-label="View Microsoft Certified: Azure Developer Associate (AZ-204) certificate">
+              <span>Microsoft Certified: Azure Developer Associate (AZ-204)</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </h3>
+          <p class="education-details">Issued: 2024</p>
+        </li>
+        <li class="education-item has-link">
+          <h3>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link" aria-label="View Cisco Certified Network Associate (CCNA) certificate">
+              <span>Cisco Certified Network Associate (CCNA)</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </h3>
+          <p class="education-details">In Progress</p>
+        </li>
+        <li class="education-item has-link">
+          <h3>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link" aria-label="View CompTIA A+ Certified certificate">
+              <span>CompTIA A+ Certified</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </h3>
+          <p class="education-details">Issued: 2023</p>
+        </li>
+        <li class="education-item has-link">
+          <h3>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="certification-link" aria-label="View ITIL Foundation Certificate in IT Service Management certificate">
+              <span>ITIL Foundation Certificate in IT Service Management</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+          </h3>
+          <p class="education-details">Issued: 2023</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="content-section card" id="projects">
+      <h2>Featured Projects</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>CloudCost Guardian</h3>
+            <p>A serverless application that monitors Azure spending, providing real-time alerts and a Power BI dashboard to visualize costs and identify optimization opportunities.</p>
+            <div class="project-links">
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Live Demo</span>
+              </a>
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>LogStream Analyzer</h3>
+            <p>A real-time log analysis platform built on Azure. It ingests data from multiple sources via Event Hubs and uses Stream Analytics to detect anomalies and trigger alerts.</p>
+            <div class="project-links">
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Live Demo</span>
+              </a>
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>SecurePass Vault</h3>
+            <p>A secure, web-based password manager using Azure Key Vault for secrets management and a .NET backend. Features end-to-end encryption for user data stored in Azure SQL.</p>
+            <div class="project-links">
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Live Demo</span>
+              </a>
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <h3>DevOps Pipeline Orchestrator</h3>
+            <p>An automated CI/CD pipeline built with Azure DevOps that containerizes applications using Docker, runs tests, and deploys them to Azure App Service with zero downtime.</p>
+            <div class="project-links">
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Live Demo</span>
+              </a>
+              <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="content-section card" id="contact">
+      <h2>Get in Touch</h2>
+      <form id="contact-form">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          <span>Send Message</span>
+        </button>
+      </form>
+    </section>
+
+  </main>
+  
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Mpho Mahloana. All rights reserved.</p>
+      <p class="signature">Mpho Mahloana</p>
+    </div>
+  </footer>
+  
+  <button id="chat-fab" aria-label="Open AI Chat Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 4.42 2.87 8.17 6.84 9.5.6.11 1.16-.38 1.16-.98v-2.84c0-.55-.45-1-1-1H7.5c-.55 0-1-.45-1-1V12c0-.55.45-1 1-1h2.08c.55 0 1-.45 1-1V8.5c0-.55-.45-1-1-1H7.5c-.55 0-1-.45-1-1v-1.5c0-.55.45-1 1-1h1.53c.55 0 1-.45 1-1V2.13c0-.55-.45-1-1-1h-.08A10 10 0 0 0 12 2Z"/><path d="M16.5 16.5c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1h-1.53c-.55 0-1 .45-1 1v1.87c0 .6-.56 1.09-1.16.98A10 10 0 0 0 22 12c0-4.42-2.87-8.17-6.84-9.5-.6-.11-1.16.38-1.16.98v2.84c0 .55.45 1 1 1h1.5c.55 0 1 .45 1 1V12c0 .55-.45 1-1 1h-2.08c-.55 0-1 .45-1 1v1.5c0 .55.45 1 1 1h1.58Z"/></svg>
+  </button>
+  
+  <div id="chat-widget" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="chat-heading">
+    <div id="chat-header">
+        <h3 id="chat-heading">AI Assistant</h3>
+        <button id="chat-close" aria-label="Close chat">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+    </div>
+    <div id="chat-messages">
+        <!-- Messages will be appended here by JavaScript -->
+    </div>
+    <form id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask about my skills..." autocomplete="off">
+        <button type="submit" aria-label="Send message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+    </form>
+  </div>
+
+  <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
