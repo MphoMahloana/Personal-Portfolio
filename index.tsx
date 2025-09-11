@@ -241,13 +241,25 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
             if (!isChatInitialized) {
                 initializeChat();
             }
+            // On mobile, hide the button after opening the chat to save screen space.
+            if (window.innerWidth < 768) {
+                (chatFab as HTMLElement).style.display = 'none';
+            }
         } else {
             chatWidget.classList.remove('visible');
             chatWidget.setAttribute('aria-hidden', 'true');
+            // On mobile, show the button again when chat is closed.
+            if (window.innerWidth < 768) {
+                (chatFab as HTMLElement).style.display = 'flex';
+            }
         }
     };
 
-    chatFab.addEventListener('click', () => toggleChat(true));
+    chatFab.addEventListener('click', () => {
+        // Toggle chat visibility based on its current state
+        const isCurrentlyVisible = chatWidget.classList.contains('visible');
+        toggleChat(!isCurrentlyVisible);
+    });
     chatClose.addEventListener('click', () => toggleChat(false));
 
     function getProfileContext(): string {
