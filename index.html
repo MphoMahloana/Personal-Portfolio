@@ -423,7 +423,7 @@ I thrive in dynamic environments where I can collaborate with diverse teams, sha
 
     <section class="content-section card" id="contact">
   <h2>Get in Touch</h2>
-  <form id="contact-form" action="https://formspree.io/f/yourFormID" method="POST">
+  <form id="contact-form" action="https://formspree.io/f/mldwvjlr" method="POST">
     <div class="form-group">
       <label for="name">Name:</label>
       <input type="text" id="name" name="name" required>
@@ -447,25 +447,7 @@ I thrive in dynamic environments where I can collaborate with diverse teams, sha
   <p id="success-message" style="display:none;">Thanks! Your message has been sent.</p>
 </section>
 
-  <script>
-  const form = document.getElementById('contact-form');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    });
 
-    if (response.ok) {
-      document.getElementById('success-message').style.display = 'block';
-      form.reset();
-    } else {
-      alert('Oops! Something went wrong. Please try again.');
-    }
-  });
-</script>
 
 
   </main>
