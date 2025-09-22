@@ -29,6 +29,71 @@
   --skill-6-text: #cc981d;
 }
 
+
+/* Dark Theme (default) */
+[data-theme="dark"] {
+  --background-start: #2c2c2f;
+  --background-end: #1a1a1c;
+  --card-background: rgba(26, 26, 28, 0.65);
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --border-color: rgba(245, 185, 34, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --highlight-color: #f5b922;
+  --header-background: rgba(26, 26, 28, 0.5);
+  --card-header-bg: rgba(0, 0, 0, 0.2);
+  --input-bg: rgba(0, 0, 0, 0.2);
+  --particles-opacity: 0.3;
+  --nav-indicator-shadow: 0 0 8px var(--highlight-color);
+  --cta-text: var(--background-end);
+  --user-chat-bg: var(--highlight-color);
+  --user-chat-text: var(--background-end);
+  --ai-chat-bg: rgba(0, 0, 0, 0.25);
+  --nav-logo-bg: linear-gradient(145deg, #2f2f32, #272729);
+  --h1-color: transparent;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --background-start: #f4f4f5;
+  --background-end: #e9e9ed;
+  --card-background: rgba(255, 255, 255, 0.65);
+  --text-primary: #1a1a1c;
+  --text-secondary: #555555;
+  --border-color: #dcdcdc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* Softer, more balanced amber for light mode */
+  --highlight-color: #c77d00;
+  
+  --header-background: rgba(255, 255, 255, 0.7);
+  --card-header-bg: #f7f7f7;
+  --input-bg: #f0f0f0;
+  --particles-opacity: 0.1;
+  
+  /* Shadow to match the new highlight color */
+  --nav-indicator-shadow: 0 0 8px rgba(199, 125, 0, 0.6);
+  
+  --cta-text: #ffffff;
+  --user-chat-bg: var(--highlight-color);
+  --user-chat-text: #ffffff;
+  --ai-chat-bg: #e9e9ed;
+  --nav-logo-bg: linear-gradient(145deg, #f9f9f9, #e0e0e0);
+  --h1-color: var(--text-primary);
+
+  /* Override bright root gradients for a more subtle light theme button */
+  --gradient-1: #d48a00;
+  --gradient-3: #c77d00;
+
+  /* Override skill text colors for better readability on light backgrounds */
+  --skill-1-text: #b87300;
+  --skill-2-text: #c77d00;
+  --skill-3-text: #ad6d00;
+  --skill-4-text: #b87300; /* Re-using same darker colors */
+  --skill-5-text: #c77d00;
+  --skill-6-text: #ad6d00;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
