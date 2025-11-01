@@ -28,21 +28,21 @@
   --skill-6-bg: rgba(204, 152, 29, 0.15);
   --skill-6-text: #cc981d;
 }
-/* --- Starry Futuristic Preloader --- */
+/* --- Futuristic Starry Preloader --- */
 #preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  background: #111;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  overflow: hidden;
   opacity: 1;
   transition: opacity 0.8s ease;
+  overflow: hidden;
 }
 
 #preloader.hidden {
@@ -50,59 +50,73 @@
   pointer-events: none;
 }
 
-/* Center glowing core */
-.preloader-core {
+/* The main rotating orb container */
+.orb-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  animation: rotate-orb 2s linear infinite;
+}
+
+/* The central orb */
+.orb-center {
   width: 20px;
   height: 20px;
-  background: var(--highlight-color);
   border-radius: 50%;
-  box-shadow: 0 0 15px var(--highlight-color), 0 0 30px var(--gradient-2);
-  position: relative;
-}
-
-/* Orbiting stars */
-.star {
+  background: #ffc400;
+  box-shadow: 0 0 15px #ffc400, 0 0 25px #ffdb58;
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: var(--highlight-color);
-  border-radius: 50%;
   top: 50%;
   left: 50%;
-  transform-origin: -40px 0;
-  box-shadow: 0 0 8px var(--highlight-color), 0 0 15px var(--gradient-2);
-  animation: orbit 4s linear infinite;
+  transform: translate(-50%, -50%);
 }
 
-.star:nth-child(1) { animation-duration: 4s; transform-origin: -40px 0; }
-.star:nth-child(2) { animation-duration: 5s; transform-origin: -55px 0; }
-.star:nth-child(3) { animation-duration: 6s; transform-origin: -70px 0; }
-.star:nth-child(4) { animation-duration: 7s; transform-origin: -85px 0; }
-.star:nth-child(5) { animation-duration: 8s; transform-origin: -100px 0; }
+/* Orbiting star */
+.orb-star {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f5b922;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(30px, -50%);
+  box-shadow: 0 0 10px #f5b922, 0 0 20px rgba(245, 185, 34, 0.5);
+  animation: orbit 2s linear infinite;
+}
+
+@keyframes rotate-orb {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
 @keyframes orbit {
-  0% { transform: rotate(0deg) translateX(var(--orbit-distance, 40px)); }
-  100% { transform: rotate(360deg) translateX(var(--orbit-distance, 40px)); }
+  0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
 }
 
-/* Optional flickering stars */
-.star::after {
+/* Optional: Add small twinkling stars in the background */
+#preloader::before {
   content: '';
   position: absolute;
   width: 2px;
   height: 2px;
-  background: #fff;
+  background: #f5b922;
+  box-shadow:
+    10px 20px #f5b922,
+    50px 80px #ffc400,
+    90px 40px #ffdb58,
+    120px 70px #f5b922,
+    160px 10px #ffc400,
+    200px 90px #ffdb58;
   border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: flicker 1.5s infinite alternate;
+  animation: twinkle 1.5s infinite alternate;
 }
 
-@keyframes flicker {
-  0% { opacity: 0.2; transform: scale(0.5) translate(-50%, -50%); }
-  50% { opacity: 1; transform: scale(1.2) translate(-50%, -50%); }
-  100% { opacity: 0.3; transform: scale(0.7) translate(-50%, -50%); }
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
 }
 
 
