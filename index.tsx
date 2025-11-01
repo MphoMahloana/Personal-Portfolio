@@ -375,22 +375,20 @@ window.addEventListener("load", () => {
   const loader = document.getElementById("preloader");
   if (!loader) return;
 
-  // How long the preloader stays visible BEFORE fading out
-  const VISIBLE_DURATION = 1600; // 1.6 seconds (adjust here)
+  const VISIBLE_DURATION = 1600; // preloader visible for 1.6s
 
   setTimeout(() => {
-      loader.style.opacity = "0";
-      loader.style.transition = "opacity 0.8s ease";
+    loader.style.opacity = "0";
+    loader.style.transition = "opacity 0.8s ease";
 
-      setTimeout(() => {
-          loader.style.display = "none";
-
-          // Fade in the portfolio
-          document.body.classList.add("page-loaded");
-      }, 800);
+    setTimeout(() => {
+      loader.style.display = "none";
+      document.body.classList.add("page-loaded"); // fade in the page
+    }, 800); // match transition duration
 
   }, VISIBLE_DURATION);
 });
+
 
 
 
