@@ -385,7 +385,7 @@ window.addEventListener("load", () => {
             loader.style.display = "none";
         }, 600);
 
-    }, 2000); // <---- Change THIS number (ms)
+    }, 1000); // <---- Change THIS number (ms)
 });
 
 
