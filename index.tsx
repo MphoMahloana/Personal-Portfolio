@@ -378,14 +378,13 @@ window.addEventListener("load", () => {
   const VISIBLE_DURATION = 1600; // preloader visible for 1.6s
 
   setTimeout(() => {
-    loader.style.opacity = "0";
     loader.style.transition = "opacity 0.8s ease";
+    loader.style.opacity = "0";
 
     setTimeout(() => {
       loader.style.display = "none";
-      document.body.classList.add("page-loaded"); // fade in the page
-    }, 800); // match transition duration
-
+      document.body.classList.add("page-loaded");
+    }, 800);
   }, VISIBLE_DURATION);
 });
 
