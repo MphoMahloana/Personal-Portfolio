@@ -375,12 +375,18 @@ window.addEventListener("load", () => {
     const loader = document.getElementById("preloader");
     if (!loader) return;
 
-    loader.style.opacity = "0";
-    loader.style.transition = "opacity 0.6s ease";
-
+    // Delay BEFORE fade-out begins
     setTimeout(() => {
-        loader.style.display = "none";
-    }, 600);
+        loader.style.opacity = "0";
+        loader.style.transition = "opacity 0.6s ease";
+
+        // Remove after fade finishes
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 600);
+
+    }, 2000); // <---- Change THIS number (ms)
 });
+
 
 
