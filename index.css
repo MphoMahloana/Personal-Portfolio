@@ -31,15 +31,23 @@
 
 #preloader {
   position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0a0a0a; /* deep dark to match your layout */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff; /* or your loader bg */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 999999;
+  z-index: 9999;
+  opacity: 1;
 }
+body.page-loaded {
+  /* optional fade-in effect for the page */
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
 
 .star-orb {
   position: relative;
