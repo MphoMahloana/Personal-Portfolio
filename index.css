@@ -95,6 +95,17 @@
   100% { transform: rotate(360deg); }
 }
 
+/* Page starts hidden */
+body {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* Page becomes visible when preloader finishes */
+body.page-loaded {
+  opacity: 1;
+}
+
 
 *, *::before, *::after {
   box-sizing: border-box;
