@@ -28,52 +28,40 @@
   --skill-6-bg: rgba(204, 152, 29, 0.15);
   --skill-6-text: #cc981d;
 }
-
-/* Preloader container */
+/* Preloader Styles */
 #preloader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
+  background: #111; /* or your page background color */
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 9999;
   opacity: 1;
   transition: opacity 0.8s ease;
 }
 
-/* Spinner */
-#preloader .spinner {
+#preloader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid #ccc;
-  border-top-color: #333;
+  border: 5px solid #fff;
+  border-top: 5px solid transparent;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* Spinner exit animation */
-#preloader.fade-out .spinner {
-  transform: scale(0.3) rotate(720deg);
-  opacity: 0;
-}
-
-/* Page fade-in */
-body {
-  opacity: 0;
-  transition: opacity 0.8s ease;
-}
-
-body.page-loaded {
-  opacity: 1;
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 *, *::before, *::after {
