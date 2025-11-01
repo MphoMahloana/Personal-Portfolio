@@ -370,3 +370,17 @@ Use the following profile information to answer all questions:\n${profileContext
         }
     });
 }
+
+window.addEventListener("load", () => {
+    const loader = document.getElementById("preloader");
+    if (!loader) return;
+
+    loader.style.opacity = "0";
+    loader.style.transition = "opacity 0.6s ease";
+
+    setTimeout(() => {
+        loader.style.display = "none";
+    }, 600);
+});
+
+
