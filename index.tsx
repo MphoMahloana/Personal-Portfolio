@@ -372,21 +372,26 @@ Use the following profile information to answer all questions:\n${profileContext
 }
 
 window.addEventListener("load", () => {
-    const loader = document.getElementById("preloader");
-    if (!loader) return;
+  const loader = document.getElementById("preloader");
+  if (!loader) return;
 
-    // Delay BEFORE fade-out begins
-    setTimeout(() => {
-        loader.style.opacity = "0";
-        loader.style.transition = "opacity 0.6s ease";
+  // How long the preloader stays visible BEFORE fading out
+  const VISIBLE_DURATION = 1600; // 1.6 seconds (adjust here)
 
-        // Remove after fade finishes
-        setTimeout(() => {
-            loader.style.display = "none";
-        }, 600);
+  setTimeout(() => {
+      loader.style.opacity = "0";
+      loader.style.transition = "opacity 0.8s ease";
 
-    }, 1000); // <---- Change THIS number (ms)
+      setTimeout(() => {
+          loader.style.display = "none";
+
+          // Fade in the portfolio
+          document.body.classList.add("page-loaded");
+      }, 800);
+
+  }, VISIBLE_DURATION);
 });
+
 
 
 
