@@ -210,21 +210,32 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
             chatWidget.classList.add('visible');
             chatWidget.setAttribute('aria-hidden', 'false');
             chatInput.focus();
+
             if (!isChatInitialized) initializeChat();
-            if (window.innerWidth < 768) (chatFab as HTMLElement).style.display = 'none';
+
+            if (window.innerWidth < 768) {
+                (chatFab as HTMLElement).style.display = 'none';
+            }
         } else {
             chatWidget.classList.remove('visible');
             chatWidget.setAttribute('aria-hidden', 'true');
-            if (window.innerWidth < 768) (chatFab as HTMLElement).style.display = 'flex';
+
+            if (window.innerWidth < 768) {
+                (chatFab as HTMLElement).style.display = 'flex';
+            }
         }
     };
 
-    chatFab.addEventListener('click', () => toggleChat(!chatWidget.classList.contains('visible')));
+    chatFab.addEventListener('click', () => {
+        const isOpen = chatWidget.classList.contains('visible');
+        toggleChat(!isOpen);
+    });
+
     chatClose.addEventListener('click', () => toggleChat(false));
 
     function getProfileContext(): string {
         const sectionsToScan = ['about', 'skills', 'experience', 'education', 'projects'];
-        let context = `Name: Mpho Mahloana, an IT Engineer and aspiring Cloud Engineer.\n`;
+        let context = `Name: Mpho Mahloana. Profession: IT Engineer and aspiring Cloud Engineer.\n`;
 
         sectionsToScan.forEach(id => {
             const section = document.getElementById(id);
@@ -234,54 +245,92 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
                     .filter(el => el.tagName.toLowerCase() !== 'h2')
                     .map(el => (el as HTMLElement).innerText.replace(/\s+/g, ' ').trim())
                     .join('\n');
-                context += `\n--- ${title.trim()} ---\n${content}\n`;
+
+                context += `\nSECTION: ${title.trim()}\n${content}\n`;
             }
         });
+
         return context;
     }
 
     async function initializeChat() {
         if (!process.env.API_KEY) {
-            appendMessage("API key is not configured. Please contact the site owner.", 'ai');
+            appendMessage("The AI service is not configured at the moment. Please contact the site owner for assistance.", 'ai');
             return;
         }
+
         isChatInitialized = true;
-        appendMessage("Hello! I'm Ekko, Mpho's AI assistant. I can provide details about his skills, projects, and experience. What would you like to know?", 'ai');
+
+        appendMessage(
+            "Hello, I am Ekko, Mpho's virtual assistant. I can help you explore his experience, skills, projects, and professional background. What would you like to know?",
+            'ai'
+        );
 
         const profileContext = getProfileContext();
-        const systemInstruction = `You are Ekko, Mpho's AI assistant. Use the following info to answer clearly:\n${profileContext}`;
+
+        // SIGNIFICANTLY IMPROVED SYSTEM PROMPT
+        const systemInstruction = `
+You are Ekko, the virtual assistant for Mpho Mahloana. 
+Your role is to communicate professionally, clearly, and naturally.
+
+Writing Style Rules:
+• Use correct grammar, punctuation, spacing, and sentence structure.
+• Do not use markdown, asterisks, hashtags, bold markers, or emojis.
+• Avoid long paragraphs. Prefer concise, polished, human-like responses.
+• Maintain a friendly and professional tone.
+• Do not hallucinate. Base all answers on the provided portfolio context.
+• If information is missing, acknowledge it politely and offer helpful guidance.
+• Never include AI disclaimers like “as an AI model.” Respond naturally.
+
+Response Behavior:
+• After answering, you may optionally offer a simple follow-up question.
+• Keep explanations consistent, clear, and easy to read.
+• Avoid overly casual language but stay approachable.
+
+Portfolio Information:
+${profileContext}
+        `;
 
         try {
             const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-            chat = ai.chats.create({ model: 'gemini-2.5-flash', config: { systemInstruction } });
+            chat = ai.chats.create({
+                model: 'gemini-2.5-flash',
+                config: { systemInstruction }
+            });
         } catch (error) {
-            console.error("Chat initialization failed:", error);
-            appendMessage("Sorry, I couldn't connect to the AI service right now.", 'ai');
+            console.error("Chat initialization error:", error);
+            appendMessage("I am unable to connect to the AI service right now. Please try again shortly.", 'ai');
         }
     }
 
-    function appendMessage(text: string, sender: 'user' | 'ai', loading: boolean = false) {
-        if (!chatMessages) return;
-        const messageWrapper = document.createElement('div');
-        messageWrapper.classList.add('chat-message', sender);
+    function appendMessage(text: string, sender: 'user' | 'ai', loading = false) {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('chat-message', sender);
 
-        const messageParagraph = document.createElement('p');
+        const paragraph = document.createElement('p');
+
         if (loading) {
-            messageWrapper.classList.add('loading');
-            messageParagraph.innerHTML = `<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>`;
+            wrapper.classList.add('loading');
+            paragraph.innerHTML = `
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            `;
         } else {
-            messageParagraph.textContent = text;
+            paragraph.textContent = text;
         }
 
-        messageWrapper.appendChild(messageParagraph);
-        chatMessages.appendChild(messageWrapper);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return messageWrapper;
+        wrapper.appendChild(paragraph);
+        chatMessages?.appendChild(wrapper);
+
+        chatMessages!.scrollTop = chatMessages!.scrollHeight;
+        return wrapper;
     }
 
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const userInput = chatInput.value.trim();
+
         if (!userInput || !chat) return;
 
         chatInput.value = '';
@@ -291,29 +340,34 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
 
         try {
             const responseStream = await chat.sendMessageStream({ message: userInput });
+
             let firstChunk = true;
-            let aiMessageWrapper: HTMLElement | null = null;
-            let currentResponse = '';
+            let aiWrapper: HTMLElement | null = null;
+            let fullResponse = '';
 
             for await (const chunk of responseStream) {
                 if (firstChunk) {
                     loadingIndicator?.remove();
-                    aiMessageWrapper = appendMessage('', 'ai');
+                    aiWrapper = appendMessage('', 'ai');
                     firstChunk = false;
                 }
-                currentResponse += chunk.text;
-                if (aiMessageWrapper) {
-                    (aiMessageWrapper.querySelector('p') as HTMLParagraphElement).textContent = currentResponse;
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                fullResponse += chunk.text;
+
+                if (aiWrapper) {
+                    const paragraph = aiWrapper.querySelector('p') as HTMLParagraphElement;
+                    paragraph.textContent = fullResponse;
+                    chatMessages!.scrollTop = chatMessages!.scrollHeight;
                 }
             }
         } catch (error) {
-            console.error("AI response error:", error);
             loadingIndicator?.remove();
-            appendMessage("Sorry, I encountered an error. Please try again.", 'ai');
+            appendMessage("Something went wrong while processing that request. Please try again.", 'ai');
+            console.error("AI error:", error);
         }
     });
 }
+
 
 // --- Preloader Fix ---
 window.addEventListener("load", () => {
