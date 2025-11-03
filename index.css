@@ -1224,11 +1224,7 @@ footer {
   background: #00a8d0;
 }
 
-/* Input field */
-#chat-input {
-  background-color: rgba(255,255,255,0.05);
-  color: #f4f4f5;
-  border: 1px solid rgba(0,200,255,0.3);
+
 }
 #chat-input:focus {
   border-color: #00c8ff;
