@@ -11,17 +11,20 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 <body>
-<div id="preloader">
-  <div class="orbit-container">
-    <div class="preloader-core"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
-    <div class="star"></div>
+ <div id="preloader">
+    <div class="preloader-container">
+      <div class="preloader-logo">
+        <!-- The SVG path has been split into two for sequential animation -->
+        <svg viewBox="0 0 105 100" class="logo-svg-preloader" aria-label="Mpho Mahloana's initials">
+          <path id="logo-m1" d="M10 85 V15 L30 45 L50 15 V85 H35 V40 L30 47 L25 40 V85 H10 Z" />
+          <path id="logo-m2" d="M55 85 V15 L75 45 L95 15 V85 H80 V40 L75 47 L70 40 V85 H55 Z" />
+          <circle id="logo-dot1" cx="30" cy="8" r="4"></circle>
+          <circle id="logo-dot2" cx="75" cy="8" r="4"></circle>
+        </svg>
+      </div>
+      <p id="preloader-text">Finalizing setup...</p>
+    </div>
   </div>
-</div>
-
-
   <div class="background">
     <div class="particles"></div>
   </div>
