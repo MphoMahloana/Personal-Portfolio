@@ -1,5 +1,26 @@
 import { GoogleGenAI, Chat } from "https://esm.sh/@google/genai";
 
+// --- Preloader ---
+const preloader = document.getElementById('preloader');
+if (preloader) {
+    document.body.classList.add('preloader-active');
+    window.addEventListener('load', () => {
+        // Use a timeout to ensure the preloader animation is visible.
+        setTimeout(() => {
+            if (preloader) {
+                preloader.classList.add('hidden');
+                document.body.classList.remove('preloader-active');
+
+                // Remove the preloader from the DOM after the fade-out transition
+                preloader.addEventListener('transitionend', () => {
+                    preloader.remove();
+                }, { once: true });
+            }
+        }, 2500); // Reduced duration for a faster preloader
+    });
+}
+
+
 // --- Mobile Navigation Toggle ---
 const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
 const body = document.body;
