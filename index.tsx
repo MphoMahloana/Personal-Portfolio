@@ -24,7 +24,15 @@ if (preloader) {
 // --- Mobile Navigation Toggle ---
 const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
 const body = document.body;
+const mobileNavMenu = document.querySelector<HTMLElement>('.mobile-nav-menu');
 const mobileNavLinks = document.querySelectorAll('.mobile-nav-menu .nav-link');
+
+const closeMobileNav = () => {
+    if (body.classList.contains('nav-open')) {
+        body.classList.remove('nav-open');
+        mobileNavToggle?.setAttribute('aria-expanded', 'false');
+    }
+};
 
 if (mobileNavToggle) {
     mobileNavToggle.addEventListener('click', () => {
@@ -36,30 +44,42 @@ if (mobileNavToggle) {
 
 // Close mobile menu when a link is clicked
 mobileNavLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        if (body.classList.contains('nav-open')) {
-            body.classList.remove('nav-open');
-            mobileNavToggle?.setAttribute('aria-expanded', 'false');
+    link.addEventListener('click', closeMobileNav);
+});
+
+// NEW: Close mobile menu when clicking the overlay background
+if (mobileNavMenu) {
+    mobileNavMenu.addEventListener('click', (e) => {
+        if (e.target === mobileNavMenu) {
+            closeMobileNav();
         }
     });
-});
+}
+
 
 // --- Scroll Animation for Content Sections ---
 const sections = document.querySelectorAll('.content-section, .hero');
-const sectionObserverOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+
+const sectionObserverOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.1
+};
 
 const sectionObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            if (entry.target.classList.contains('content-section')) {
-                entry.target.classList.add('visible');
-            }
-            observer.unobserve(entry.target);
-        }
-    });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      if (entry.target.classList.contains('content-section')) {
+        entry.target.classList.add('visible');
+      }
+      observer.unobserve(entry.target);
+    }
+  });
 }, sectionObserverOptions);
 
-sections.forEach(section => sectionObserver.observe(section));
+document.querySelectorAll('.content-section').forEach(section => {
+  sectionObserver.observe(section);
+});
 
 // --- Scroll Animation for Skill Badges ---
 const skillsSection = document.querySelector('#skills');
@@ -72,7 +92,7 @@ if (skillsSection) {
                     (badge as HTMLElement).style.transitionDelay = `${index * 75}ms`;
                     badge.classList.add('visible');
                 });
-                observer.unobserve(entry.target);
+                observer.unobserve(entry.target); // Animate only once
             }
         });
     }, { threshold: 0.2 });
@@ -80,12 +100,13 @@ if (skillsSection) {
     skillBadgeObserver.observe(skillsSection);
 }
 
-// --- Nav Link Active State on Scroll & Gooey Effect ---
+// --- Nav Link Active State on Scroll (Scroll-spying) & Gooey Effect---
 const allNavLinks = document.querySelectorAll('.nav-link');
 const pageSections = document.querySelectorAll('.hero, .content-section');
 const desktopNav = document.querySelector<HTMLElement>('.desktop-nav-links');
 let indicator: HTMLElement | null = null;
 
+// Create and add indicator for desktop nav only
 if (desktopNav) {
     indicator = document.createElement('div');
     indicator.classList.add('nav-indicator');
@@ -96,7 +117,8 @@ function moveIndicator(element: HTMLElement | null) {
     if (!element || !indicator || !desktopNav) return;
     const linkRect = element.getBoundingClientRect();
     const navRect = desktopNav.getBoundingClientRect();
-
+    
+    // Check if the link is actually visible (e.g., not on a wrapped line)
     if (linkRect.width > 0 && linkRect.height > 0) {
         indicator.style.width = `${linkRect.width}px`;
         indicator.style.height = `2px`;
@@ -104,15 +126,16 @@ function moveIndicator(element: HTMLElement | null) {
     }
 }
 
+// Add hover effects for desktop nav
 if (desktopNav) {
     const desktopLinks = desktopNav.querySelectorAll<HTMLAnchorElement>('.nav-link');
-
+    
     desktopLinks.forEach(link => {
         link.addEventListener('mouseenter', (e) => {
             moveIndicator(e.target as HTMLElement);
         });
     });
-
+    
     desktopNav.addEventListener('mouseleave', () => {
         const currentActiveLink = desktopNav.querySelector<HTMLElement>('.nav-link.active');
         moveIndicator(currentActiveLink);
@@ -121,7 +144,7 @@ if (desktopNav) {
 
 const navObserverOptions = {
     root: null,
-    rootMargin: '-50% 0px -50% 0px',
+    rootMargin: '-50% 0px -50% 0px', // Trigger when the middle of the section crosses the middle of the viewport
     threshold: 0
 };
 
@@ -130,35 +153,41 @@ const navObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             const id = entry.target.getAttribute('id');
             let activeDesktopLink: HTMLElement | null = null;
-
+            
             allNavLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === `#${id}`) {
                     link.classList.add('active');
-                    if (desktopNav && desktopNav.contains(link)) {
+                    if(desktopNav && desktopNav.contains(link)) {
                         activeDesktopLink = link as HTMLElement;
                     }
                 }
             });
-
+            
+            // Move indicator to the newly active link
             moveIndicator(activeDesktopLink);
         }
     });
 }, navObserverOptions);
 
-pageSections.forEach(section => navObserver.observe(section));
-
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const initialActiveLink = document.querySelector<HTMLElement>('.desktop-nav-links .nav-link.active');
-        moveIndicator(initialActiveLink);
-    }, 150);
+pageSections.forEach(section => {
+    navObserver.observe(section);
 });
 
+// Set initial indicator position on page load
+window.addEventListener('load', () => {
+   setTimeout(() => {
+      const initialActiveLink = document.querySelector<HTMLElement>('.desktop-nav-links .nav-link.active');
+      moveIndicator(initialActiveLink);
+   }, 150);
+});
+
+// Recalculate indicator on resize
 window.addEventListener('resize', () => {
     const currentActiveLink = document.querySelector<HTMLElement>('.desktop-nav-links .nav-link.active');
     moveIndicator(currentActiveLink);
 });
+
 
 // --- Contact Form Handler ---
 const contactForm = document.getElementById('contact-form');
@@ -166,9 +195,12 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        // In a real app, you would handle form submission here (e.g., using Fetch API).
+        // For this demo, we'll simulate a successful submission with UI feedback.
         const form = e.target as HTMLFormElement;
         const button = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
-
+        
         if (button) {
             const originalButtonContent = button.innerHTML;
             button.innerHTML = `
@@ -194,17 +226,23 @@ if (educationSection) {
         const VISIBLE_ITEMS = 3;
 
         if (items.length > VISIBLE_ITEMS) {
+            // Initially hide extra items by adding a class
             items.forEach((item, index) => {
-                if (index >= VISIBLE_ITEMS) item.classList.add('collapsible-item');
+                if (index >= VISIBLE_ITEMS) {
+                    item.classList.add('collapsible-item');
+                }
             });
 
+            // Create the "Read More" button
             const readMoreBtn = document.createElement('button');
             readMoreBtn.classList.add('read-more-btn');
             readMoreBtn.textContent = 'Show All';
             readMoreBtn.setAttribute('aria-expanded', 'false');
-
+            
+            // Append the button after the list
             list.insertAdjacentElement('afterend', readMoreBtn);
 
+            // Add click event listener
             readMoreBtn.addEventListener('click', () => {
                 const isExpanded = list.classList.toggle('expanded');
                 readMoreBtn.textContent = isExpanded ? 'Show Less' : 'Show All';
@@ -213,6 +251,7 @@ if (educationSection) {
         }
     }
 }
+
 
 // --- AI Chat Assistant ---
 const chatFab = document.getElementById('chat-fab');
@@ -231,33 +270,22 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
             chatWidget.classList.add('visible');
             chatWidget.setAttribute('aria-hidden', 'false');
             chatInput.focus();
-
-            if (!isChatInitialized) initializeChat();
-
-            if (window.innerWidth < 768) {
-                (chatFab as HTMLElement).style.display = 'none';
+            if (!isChatInitialized) {
+                initializeChat();
             }
         } else {
             chatWidget.classList.remove('visible');
             chatWidget.setAttribute('aria-hidden', 'true');
-
-            if (window.innerWidth < 768) {
-                (chatFab as HTMLElement).style.display = 'flex';
-            }
         }
     };
 
-    chatFab.addEventListener('click', () => {
-        const isOpen = chatWidget.classList.contains('visible');
-        toggleChat(!isOpen);
-    });
-
+    chatFab.addEventListener('click', () => toggleChat(true));
     chatClose.addEventListener('click', () => toggleChat(false));
 
     function getProfileContext(): string {
         const sectionsToScan = ['about', 'skills', 'experience', 'education', 'projects'];
-        let context = `Name: Mpho Mahloana. Profession: IT Engineer and aspiring Cloud Engineer.\n`;
-
+        let context = `Name: Mpho Mahloana, an IT Engineer and aspiring Cloud Engineer.\n`;
+        
         sectionsToScan.forEach(id => {
             const section = document.getElementById(id);
             if (section) {
@@ -266,146 +294,142 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
                     .filter(el => el.tagName.toLowerCase() !== 'h2')
                     .map(el => (el as HTMLElement).innerText.replace(/\s+/g, ' ').trim())
                     .join('\n');
-
-                context += `\nSECTION: ${title.trim()}\n${content}\n`;
+                context += `\n--- ${title.trim()} ---\n${content}\n`;
             }
         });
-
         return context;
+    }
+
+    async function submitUserMessage(message: string) {
+        if (!message || !chat) return;
+
+        // Hide suggestions on first interaction
+        const suggestions = document.getElementById('chat-suggestions');
+        if (suggestions) {
+            suggestions.remove();
+        }
+
+        appendMessage(message, 'user');
+        const loadingIndicator = appendMessage('', 'ai', true);
+        
+        try {
+            const responseStream = await chat.sendMessageStream({ message: message });
+            
+            let firstChunk = true;
+            let aiMessageWrapper: HTMLElement | null = null;
+            let currentResponse = '';
+
+            for await (const chunk of responseStream) {
+                if (firstChunk) {
+                    loadingIndicator?.remove();
+                    aiMessageWrapper = appendMessage('', 'ai');
+                    firstChunk = false;
+                }
+                currentResponse += chunk.text;
+                if (aiMessageWrapper) {
+                    (aiMessageWrapper.querySelector('p') as HTMLParagraphElement).textContent = currentResponse.replace(/\*\*/g, '');
+                    if(chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+            }
+        } catch (error) {
+            console.error("AI response error:", error);
+            loadingIndicator?.remove();
+            appendMessage("Sorry, I encountered an error. Please try again.", 'ai');
+        }
+    }
+
+    function displaySuggestions() {
+        if (!chatMessages) return;
+
+        const suggestionsContainer = document.createElement('div');
+        suggestionsContainer.id = 'chat-suggestions';
+        suggestionsContainer.classList.add('chat-suggestions-container');
+
+        const suggestions = [
+            "What are his key skills?",
+            "Tell me about his projects.",
+            "What is his experience with Azure?"
+        ];
+
+        suggestions.forEach(text => {
+            const button = document.createElement('button');
+            button.classList.add('suggestion-chip');
+            button.textContent = text;
+            button.onclick = () => {
+                chatInput.value = text;
+                submitUserMessage(text);
+                chatInput.value = '';
+            };
+            suggestionsContainer.appendChild(button);
+        });
+
+        chatMessages.appendChild(suggestionsContainer);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
     async function initializeChat() {
         if (!process.env.API_KEY) {
-            appendMessage("The AI service is not configured at the moment. Please contact the site owner for assistance.", 'ai');
+            appendMessage("API key is not configured. Please contact the site owner.", 'ai');
             return;
         }
-
         isChatInitialized = true;
-
-        appendMessage(
-            "Hello, I am Ekko, Mpho's virtual assistant. I can help you explore his experience, skills, projects, and professional background. What would you like to know?",
-            'ai'
-        );
+        appendMessage("Hello! I'm Ekko, Mpho's AI assistant. I can provide details about his skills, projects, and experience. What would you like to know?", 'ai');
+        displaySuggestions();
 
         const profileContext = getProfileContext();
+        const systemInstruction = `You are Ekko, Mpho's friendly and knowledgeable AI assistant. Your goal is to provide clear, helpful, and straightforward information about his skills and experience. Your tone should be natural, conversational, and grounded. Think of it as having a friendly chat about what Mpho can do.
 
-        // SIGNIFICANTLY IMPROVED SYSTEM PROMPT
-        const systemInstruction = `
-You are Ekko, the virtual assistant for Mpho Mahloana. 
-Your role is to communicate professionally, clearly, and naturally.
+Key Guidelines:
+1.  **Stick to the Facts**: Base all your answers on the portfolio information provided. You know this information well. When it makes sense, connect his skills to his projects and experiences to provide context.
+2.  **Focus on Skills, Not Employers**: When discussing his experience, emphasize the skills he acquired and his accomplishments in the role (e.g., 'As a Digital Associate, he gained hands-on experience with Azure...'). Avoid over-emphasizing the company name.
+3.  **Be Honest and Helpful**: If asked about something not in the profile, it's fine to say it isn't listed. You can then pivot to his ability to learn new things. For example: "While that specific technology isn't highlighted in his projects here, his experience with Python and cloud fundamentals shows he's a quick study and adaptable."
+4.  **Explain with Examples**: Don't just list skills. Talk about how he has used them. Instead of just "He knows Azure," you could say, "He has hands-on experience with Microsoft Azure, which he used to deploy and manage infrastructure for his projects, like the cloud-based web scraper."
+5.  **Keep it Conversational**: After you answer, you can use simple follow-ups like, "Anything else I can clarify on that?" to keep the conversation going naturally.
+6.  **Summarize Simply**: If asked for a general overview ("Tell me about Mpho"), provide a simple, direct summary. For instance: "Mpho is an IT Engineer who is really passionate about cloud technology. He enjoys problem-solving and is focused on growing his skills in the cloud engineering space."
+7.  **Stay on Topic**: If the conversation drifts into unrelated areas, gently guide it back to Mpho's professional background. Example: "That's an interesting point! To keep things focused, I can tell you more about his technical projects if you'd like."
+8.  **Grammar and Formatting**:
+    - **Perfect Grammar**: Ensure all responses are grammatically correct, clear, and professional. Avoid slang or overly casual language.
+    - **Strictly Plain Text**: You MUST NOT use any markdown formatting. This includes asterisks for bolding (\`**text**\`), headings, lists, or any other special characters. Your entire output must be plain text. Use short paragraphs for readability.
 
-Writing Style Rules:
-• Use correct grammar, punctuation, spacing, and sentence structure.
-• Do not use markdown, asterisks, hashtags, bold markers, or emojis.
-• Avoid long paragraphs. Prefer concise, polished, human-like responses.
-• Maintain a friendly and professional tone.
-• Do not hallucinate. Base all answers on the provided portfolio context.
-• If information is missing, acknowledge it politely and offer helpful guidance.
-• Never include AI disclaimers like “as an AI model.” Respond naturally.
-
-Response Behavior:
-• After answering, you may optionally offer a simple follow-up question.
-• Keep explanations consistent, clear, and easy to read.
-• Avoid overly casual language but stay approachable.
-
-Portfolio Information:
-${profileContext}
-        `;
-
+Use the following profile information to answer all questions:\n${profileContext}`;
+        
         try {
             const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
             chat = ai.chats.create({
                 model: 'gemini-2.5-flash',
-                config: { systemInstruction }
+                config: { systemInstruction },
             });
         } catch (error) {
-            console.error("Chat initialization error:", error);
-            appendMessage("I am unable to connect to the AI service right now. Please try again shortly.", 'ai');
+            console.error("Chat initialization failed:", error);
+            appendMessage("Sorry, I couldn't connect to the AI service right now.", 'ai');
         }
     }
 
-    function appendMessage(text: string, sender: 'user' | 'ai', loading = false) {
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('chat-message', sender);
-
-        const paragraph = document.createElement('p');
-
+    function appendMessage(text: string, sender: 'user' | 'ai', loading: boolean = false) {
+        if (!chatMessages) return;
+        const messageWrapper = document.createElement('div');
+        messageWrapper.classList.add('chat-message', sender);
+        
+        const messageParagraph = document.createElement('p');
         if (loading) {
-            wrapper.classList.add('loading');
-            paragraph.innerHTML = `
-                <span class="typing-dot"></span>
-                <span class="typing-dot"></span>
-                <span class="typing-dot"></span>
-            `;
+            messageWrapper.classList.add('loading');
+            messageParagraph.innerHTML = `<span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span>`;
         } else {
-            paragraph.textContent = text;
+            messageParagraph.textContent = text;
         }
-
-        wrapper.appendChild(paragraph);
-        chatMessages?.appendChild(wrapper);
-
-        chatMessages!.scrollTop = chatMessages!.scrollHeight;
-        return wrapper;
+        
+        messageWrapper.appendChild(messageParagraph);
+        chatMessages.appendChild(messageWrapper);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        return messageWrapper;
     }
 
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const userInput = chatInput.value.trim();
-
-        if (!userInput || !chat) return;
+        if (!userInput) return;
 
         chatInput.value = '';
-        appendMessage(userInput, 'user');
-
-        const loadingIndicator = appendMessage('', 'ai', true);
-
-        try {
-            const responseStream = await chat.sendMessageStream({ message: userInput });
-
-            let firstChunk = true;
-            let aiWrapper: HTMLElement | null = null;
-            let fullResponse = '';
-
-            for await (const chunk of responseStream) {
-                if (firstChunk) {
-                    loadingIndicator?.remove();
-                    aiWrapper = appendMessage('', 'ai');
-                    firstChunk = false;
-                }
-
-                fullResponse += chunk.text;
-
-                if (aiWrapper) {
-                    const paragraph = aiWrapper.querySelector('p') as HTMLParagraphElement;
-                    paragraph.textContent = fullResponse;
-                    chatMessages!.scrollTop = chatMessages!.scrollHeight;
-                }
-            }
-        } catch (error) {
-            loadingIndicator?.remove();
-            appendMessage("Something went wrong while processing that request. Please try again.", 'ai');
-            console.error("AI error:", error);
-        }
+        submitUserMessage(userInput);
     });
 }
-
-
-// --- Preloader Fix ---
-window.addEventListener("load", () => {
-    const loader = document.getElementById("preloader");
-    if (!loader) return;
-
-    const VISIBLE_DURATION = 1600;
-    const FADE_DURATION = 800;
-
-    setTimeout(() => {
-        loader.style.transition = `opacity ${FADE_DURATION}ms ease`;
-        loader.style.opacity = "0";
-
-        setTimeout(() => {
-            loader.style.display = "none";
-            document.body.classList.add("page-loaded");
-        }, FADE_DURATION);
-
-    }, VISIBLE_DURATION);
-});
