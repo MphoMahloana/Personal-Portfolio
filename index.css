@@ -470,8 +470,8 @@ p {
 }
 
 .profile--img {
-  width: 400px;
-  height: 400px;
+  width: 350px;
+  height: 350px;
   border-radius: 400%;
   border: 4px solid var(--border-color);
   object-fit: cover;
