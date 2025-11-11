@@ -1166,7 +1166,6 @@ footer {
 #chat-form button:hover, #chat-form button:focus {
   color: var(--highlight-color);
 }
-
 /* --- Media Queries for Responsiveness --- */
 
 @media (max-width: 767px) {
