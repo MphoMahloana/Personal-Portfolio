@@ -22,5 +22,11 @@ Education & Certifications — my formal training and certifications, including 
 Projects — featured projects (AI Resume Builder, Sentiment Analysis dashboard, Job Readiness tool, Bias Audit Report, etc.), with live demos and source code referenced.  
 Contact— a simple contact form / link so collaborators or visitors can reach out.
 
+## Connect With Me
+
+I am actively looking for opportunities in Data Engineering and Software Development and am always open to connection.
+
+Email: mabby.mpho01@gmail.com
+LinkedIn: www.linkedin.com/in/mpho-mahloana/
 
 
