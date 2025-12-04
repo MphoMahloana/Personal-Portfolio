@@ -269,13 +269,20 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
         if (isOpen) {
             chatWidget.classList.add('visible');
             chatWidget.setAttribute('aria-hidden', 'false');
-            chatInput.focus();
+            document.body.classList.add('chat-open');
+            
+            // Slight delay for focus to ensure transition doesn't jitter with keyboard
+            setTimeout(() => {
+                chatInput.focus();
+            }, 50);
+
             if (!isChatInitialized) {
                 initializeChat();
             }
         } else {
             chatWidget.classList.remove('visible');
             chatWidget.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('chat-open');
         }
     };
 
@@ -327,7 +334,14 @@ if (chatFab && chatWidget && chatClose && chatMessages && chatForm && chatInput)
                 }
                 currentResponse += chunk.text;
                 if (aiMessageWrapper) {
-                    (aiMessageWrapper.querySelector('p') as HTMLParagraphElement).textContent = currentResponse.replace(/\*\*/g, '');
+                    // Fallback to remove markdown emphasis (bold/italics) but preserve characters in other contexts
+                    const cleanedResponse = currentResponse
+                        .replace(/\*\*(.*?)\*\*/g, '$1') // bold with **
+                        .replace(/__(.*?)__/g, '$1')   // bold with __
+                        .replace(/\*(.*?)\*/g, '$1')   // italics with *
+                        .replace(/_(.*?)_/g, '$1');    // italics with _
+                    
+                    (aiMessageWrapper.querySelector('p') as HTMLParagraphElement).textContent = cleanedResponse;
                     if(chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
                 }
             }
@@ -389,7 +403,11 @@ Key Guidelines:
 7.  **Stay on Topic**: If the conversation drifts into unrelated areas, gently guide it back to Mpho's professional background. Example: "That's an interesting point! To keep things focused, I can tell you more about his technical projects if you'd like."
 8.  **Grammar and Formatting**:
     - **Perfect Grammar**: Ensure all responses are grammatically correct, clear, and professional. Avoid slang or overly casual language.
-    - **Strictly Plain Text**: You MUST NOT use any markdown formatting. This includes asterisks for bolding (\`**text**\`), headings, lists, or any other special characters. Your entire output must be plain text. Use short paragraphs for readability.
+    - **Strictly Plain Text**: You MUST NOT use any markdown formatting for styling. Your entire output must be plain text. For emphasis, use phrasing, not special characters.
+        - **Example - CORRECT**: Mpho has a strong background in Microsoft Azure and C#.
+        - **Example - INCORRECT**: Mpho has a strong background in **Microsoft Azure** and \`C#\`.
+        - **Example - INCORRECT**: Mpho's skills include:\n* Azure\n* Python
+    - **Final Check**: Before sending your response, review it to ensure no formatting characters (like \`*\`, \`_\`, \`#\`, \`~\`, \`>\`) are used for styling purposes.
 
 Use the following profile information to answer all questions:\n${profileContext}`;
         
